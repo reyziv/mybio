@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обо мне</title>
+    <style>
+        /* Подключение шрифта */
+        @font-face {
+            font-family: 'JetBrains Mono';
+            src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@2.2.2/patched-fonts/JetBrainsMono/Regular/complete/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Основные стили */
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 0;
+            background: url('f8zw25j46cqa1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #d3d3d3;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Фон с блюром */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        /* Контейнер информации */
+        .info-container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Блок информации */
+        .info-block {
+            background: rgba(50, 50, 50, 0.8);
+            margin: 10px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* Эффект подсветки при наведении */
+        .info-block:hover {
+            background-color: rgba(100, 100, 100, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .info-header {
+            padding: 15px;
+            font-size: 1.5em;
+            color: #ffffff;
+            cursor: pointer;
+            background-color: rgba(70, 70, 70, 1);
+            user-select: none;
+        }
+
+        .info-content {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 15px;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .info-content.open {
+            max-height: 500px; /* Максимальная высота блока при развертывании */
+            opacity: 1;
+        }
+
+        .info-content p {
+            margin: 0;
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #d3d3d3;
+        }
+
+        /* Надпись внизу */
+        .footer-text {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9em;
+            color: #b0b0b0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Медиазапросы для адаптивности */
+        @media (max-width: 768px) {
+            .info-header {
+                font-size: 1.3em;
+            }
+
+            .info-content p {
+                font-size: 1em;
+            }
+
+            .footer-text {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-container {
+                width: 90%;
+            }
+
+            .info-header {
+                font-size: 1.2em;
+            }
+
+            .info-content p {
+                font-size: 0.9em;
+            }
+
+            .footer-text {
+                font-size: 0.7em;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="info-container">
+    <div class="info-block">
+        <div class="info-header">Информация</div>
+        <div class="info-content">
+            <p>Я Михаил, люблю деградацию </p>
+        </div>
+    </div>
+    <div class="info-block">
+        <div class="info-header">Устройства</div>
+        <div class="info-content">
+            <p>Redmi Note 12 Pro+, Nintendo Switch rev2 чипованный, RX6600, Ryzen 5 3600, 32GB Ram, Gigabyte B550M ds3h</p>
+        </div>
+    </div>
+    <div class="info-block">
+        <div class="info-header">Любимая музыка</div>
+        <div class="info-content">
+            <p>Рок, панк-рок, ска</p>
+        </div>
+    </div>
+    <div class="info-block">
+        <div class="info-header">Теги</div>
+        <div class="info-content">
+            <p>Telegram-@reyziv</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer-text">
+    degradation.
+</div>
+
+<script>
+    // Получаем все заголовки блоков
+    const headers = document.querySelectorAll('.info-header');
+
+    // Навешиваем обработчики событий на каждый заголовок
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const block = header.parentElement;
+            const content = block.querySelector('.info-content');
+
+            // Переключаем класс open для блока и содержимого
+            block.classList.toggle('open');
+            content.classList.toggle('open');
+
+            // Закрываем другие блоки, если требуется
+            document.querySelectorAll('.info-block').forEach(otherBlock => {
+                if (otherBlock !== block) {
+                    otherBlock.classList.remove('open');
+                    otherBlock.querySelector('.info-content').classList.remove('open');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
