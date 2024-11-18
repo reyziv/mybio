@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Обо мне</title>
     <style>
-        /* Подключение шрифта */
         @font-face {
             font-family: 'JetBrains Mono';
             src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@2.2.2/patched-fonts/JetBrainsMono/Regular/complete/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
@@ -13,7 +12,6 @@
             font-style: normal;
         }
 
-        /* Основные стили */
         body {
             font-family: 'JetBrains Mono', monospace;
             margin: 0;
@@ -29,7 +27,6 @@
             height: 100vh;
         }
 
-        /* Фон с блюром */
         body::before {
             content: "";
             position: fixed;
@@ -42,13 +39,11 @@
             z-index: -1;
         }
 
-        /* Контейнер информации */
         .info-container {
             max-width: 600px;
             width: 100%;
         }
 
-        /* Блок информации */
         .info-block {
             background: rgba(50, 50, 50, 0.8);
             margin: 10px 0;
@@ -58,7 +53,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Эффект подсветки при наведении */
         .info-block:hover {
             background-color: rgba(100, 100, 100, 0.9);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
@@ -85,7 +79,7 @@
         }
 
         .info-content.open {
-            max-height: 500px; /* Максимальная высота блока при развертывании */
+            max-height: 500px; 
             opacity: 1;
         }
 
@@ -96,7 +90,6 @@
             color: #d3d3d3;
         }
 
-        /* Надпись внизу */
         .footer-text {
             position: absolute;
             bottom: 10px;
@@ -105,7 +98,6 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        /* Медиазапросы для адаптивности */
         @media (max-width: 768px) {
             .info-header {
                 font-size: 1.3em;
@@ -172,20 +164,16 @@
 </div>
 
 <script>
-    // Получаем все заголовки блоков
     const headers = document.querySelectorAll('.info-header');
 
-    // Навешиваем обработчики событий на каждый заголовок
     headers.forEach(header => {
         header.addEventListener('click', () => {
             const block = header.parentElement;
             const content = block.querySelector('.info-content');
 
-            // Переключаем класс open для блока и содержимого
             block.classList.toggle('open');
             content.classList.toggle('open');
 
-            // Закрываем другие блоки, если требуется
             document.querySelectorAll('.info-block').forEach(otherBlock => {
                 if (otherBlock !== block) {
                     otherBlock.classList.remove('open');
